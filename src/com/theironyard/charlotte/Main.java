@@ -36,18 +36,21 @@ public class Main {
                         updateLotZero(update.getSize(), update.getSize());
                     } else {
                         System.out.println("car doesn't fit or can't pay");
+                        return "";
                     }
                 case 1:
                     if(update.getSize() <= update.getSize() && update.getMoney() >= (update.getMoney() * update.getSize())) {
                         updateLotOne(update.getSize(), update.getSize());
                     } else {
                         System.out.println("car doesn't fit or can't pay");
+                        return "";
                     }
                 case 2:
                     if(update.getSize() <= update.getSize() && update.getMoney() >= (update.getMoney() * update.getSize())) {
                         updateLotTwo(update.getSize(), update.getSize());
                     } else {
                         System.out.println("car doesn't fit or can't pay");
+                        return "";
                     }
             }
             System.out.println("Lots updated");
