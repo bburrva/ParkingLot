@@ -6,6 +6,8 @@ import sun.plugin2.message.Serializer;
 
 import java.util.ArrayList;
 
+import static spark.Spark.before;
+
 public class Main {
     private static ArrayList<ParkingLot> parkinglot = new ArrayList<>();
     private static JsonParser parser = new JsonParser();
@@ -15,6 +17,10 @@ public class Main {
         parkinglot.add(new ParkingLot(0, 20, 6));
         parkinglot.add(new ParkingLot(1, 15, 5));
         parkinglot.add(new ParkingLot(2, 30, 7));
+
+        before((request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+        });
 
         Spark.get("/parking-lot", ((request, response) -> {
             System.out.println("Someone is trying to park a car.");
@@ -54,6 +60,7 @@ public class Main {
         for (ParkingLot parking : parkinglot) {
             if (parking.getId()== 0) {
                 parking.setSize(parking.getSize() + size);
+                break;
             }
         }
     }
@@ -62,6 +69,7 @@ public class Main {
         for (ParkingLot parking : parkinglot) {
             if (parking.getId()== 1) {
                 parking.setSize(parking.getSize() + size);
+                break;
             }
         }
     }
@@ -70,6 +78,7 @@ public class Main {
         for (ParkingLot parking : parkinglot) {
             if (parking.getId()== 2) {
                 parking.setSize(parking.getSize() + size);
+                break;
             }
         }
     }
