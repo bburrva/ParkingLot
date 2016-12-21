@@ -18,6 +18,11 @@ public class Main {
         parkinglot.add(new ParkingLot(1, 15, 5));
         parkinglot.add(new ParkingLot(2, 30, 7));
 
+        String port = System.getenv("PORT");
+        if(port != null) {
+            Spark.port(Integer.valueOf(port));
+        }
+
         before((request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
         });
