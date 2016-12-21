@@ -18,7 +18,7 @@ public class Main {
         parkinglot.add(new ParkingLot(2, 30, 7));
 
         String port = System.getenv("PORT");
-        if(port != null) {
+        if (port != null) {
             Spark.port(Integer.valueOf(port));
         }
 
@@ -34,60 +34,52 @@ public class Main {
         Spark.post("/update", ((request, response) -> {
             Update update = parser.parse(request.body(), Update.class);
 
-            switch(update.getId()) {
-                case 0:
-                    if(update.getSize() <= update.getSize() && update.getMoney() >= (update.getMoney() * update.getSize())) {
-                        updateLotZero(update.getSize(), update.getSize());
-                    } else {
-                        System.out.println("car doesn't fit or can't pay");
-                        return "";
-                    }
-                case 1:
-                    if(update.getSize() <= update.getSize() && update.getMoney() >= (update.getMoney() * update.getSize())) {
-                        updateLotOne(update.getSize(), update.getSize());
-                    } else {
-                        System.out.println("car doesn't fit or can't pay");
-                        return "";
-                    }
-                case 2:
-                    if(update.getSize() <= update.getSize() && update.getMoney() >= (update.getMoney() * update.getSize())) {
-                        updateLotTwo(update.getSize(), update.getSize());
-                    } else {
-                        System.out.println("car doesn't fit or can't pay");
-                        return "";
-                    }
+            if (update.getSize() <= returnLot(update.getId()).getCapacity() && update.getMoney() >= (returnLot(update.getId()).getRate() * update.getSize())) {
+                updateLot(returnLot(update.getId()).getId(), returnLot(update.getId()).getCapacity());
+            } else {
+                System.out.println("car doesn't fit or can't pay");
+                return "";
             }
+
             System.out.println("Lots updated");
             System.out.println(parkinglot);
             return "";
         }));
     }
 
-    public static void updateLotZero(int id, int size) {
+    public static void updateLot(int id, int size) {
         for (ParkingLot parking : parkinglot) {
-            if (parking.getId()== 0) {
-                parking.setSize(parking.getSize() + size);
+            if (parking.getId() == id) {
+                parking.setCapacity(parking.getCapacity() + size);
                 break;
             }
         }
     }
 
-    public static void updateLotOne(int id, int size) {
+    public static ParkingLot returnLot(int id) {
         for (ParkingLot parking : parkinglot) {
-            if (parking.getId()== 1) {
-                parking.setSize(parking.getSize() + size);
-                break;
+            if (parking.getId() == id) {
+                return parking;
             }
         }
+        return null;
     }
-
-    public static void updateLotTwo(int id, int size) {
-        for (ParkingLot parking : parkinglot) {
-            if (parking.getId()== 2) {
-                parking.setSize(parking.getSize() + size);
-                break;
-            }
-        }
-    }
+//    public static void updateLotOne(int id, int size) {
+//        for (ParkingLot parking : parkinglot) {
+//            if (parking.getId()== 1) {
+//                parking.setSize(parking.getSize() + size);
+//                break;
+//            }
+//        }
+//    }
+//
+//    public static void updateLotTwo(int id, int size) {
+//        for (ParkingLot parking : parkinglot) {
+//            if (parking.getId()== 2) {
+//                parking.setSize(parking.getSize() + size);
+//                break;
+//            }
+//        }
+//    }
 
 }
