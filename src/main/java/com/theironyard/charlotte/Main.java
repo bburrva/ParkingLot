@@ -50,7 +50,7 @@ public class Main {
     public static void updateLot(int id, int size) {
         for (ParkingLot parking : parkinglot) {
             if (parking.getId() == id) {
-                parking.setCapacity(parking.getCapacity() + size);
+                parking.setCapacity(parking.getCapacity() - size);
                 break;
             }
         }
