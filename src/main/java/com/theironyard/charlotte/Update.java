@@ -6,7 +6,7 @@ package com.theironyard.charlotte;
 public class Update {
     private int id;
     private int size;
-    private int money;
+    private int rate;
 
     public int getId() {
         return id;
@@ -24,11 +24,11 @@ public class Update {
         this.size = size;
     }
 
-    public int getMoney() {
-        return money;
+    public int getRate() {
+        return rate;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 }
