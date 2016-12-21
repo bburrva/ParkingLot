@@ -2,7 +2,6 @@ package com.theironyard.charlotte;
 
 import jodd.json.*;
 import spark.Spark;
-import sun.plugin2.message.Serializer;
 
 import java.util.ArrayList;
 
