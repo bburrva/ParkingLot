@@ -6,12 +6,12 @@ package com.theironyard.charlotte;
 public class ParkingLot {
     private int id;
     private int capacity;
-    private int rate;
+    private int cost;
 
-    public ParkingLot(int id, int capacity, int rate) {
+    public ParkingLot(int id, int capacity, int cost) {
         this.id = id;
         this.capacity = capacity;
-        this.rate = rate;
+        this.cost = cost;
     }
 
     public int getId() {
@@ -28,12 +28,12 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
-    public int getRate() {
-        return rate;
+    public int getCost() {
+        return cost;
     }
 
-    public void setRate(int rate) {
-        this.rate = rate;
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
 }

@@ -34,17 +34,17 @@ public class Main {
         Spark.post("/update", ((request, response) -> {
             Update update = parser.parse(request.body(), Update.class);
 
-            if (update.getSize() <= returnLot(update.getId()).getCapacity() && update.getRate() >= (returnLot(update.getId()).getRate() * update.getSize())) {
+            if (update.getSize() <= returnLot(update.getId()).getCapacity() && update.getRate() >= (returnLot(update.getId()).getCost() * update.getSize())) {
                 updateLot(returnLot(update.getId()).getId(), returnLot(update.getId()).getCapacity());
             } else if((update.getSize() > returnLot(update.getId()).getCapacity())){
                 System.out.println("car doesn't fit");
                 return "";
-            } else if(update.getRate() < (returnLot(update.getId()).getRate() * update.getSize())) {
+            } else if(update.getRate() < (returnLot(update.getId()).getCost() * update.getSize())) {
                 System.out.println("Car doesn't have enough money");
                 return "";
             }
 
-            System.out.println("Lots updated");
+            System.out.println("Lot " + update.getId() + "updated");
             System.out.println(parkinglot);
             return "";
         }));
