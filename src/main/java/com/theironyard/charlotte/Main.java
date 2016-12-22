@@ -27,7 +27,7 @@ public class Main {
         });
 
         Spark.get("/parking-lot", ((request, response) -> {
-            System.out.println("Someone is trying to park a car.");
+            System.out.println("Your api was poked or something.");
             return serializer.serialize(parkinglot);
         }));
 
@@ -35,7 +35,7 @@ public class Main {
             Update update = parser.parse(request.body(), Update.class);
 
             if (update.getSize() <= returnLot(update.getId()).getCapacity() && update.getRate() >= (returnLot(update.getId()).getCost() * update.getSize())) {
-                updateLot(returnLot(update.getId()).getId(), returnLot(update.getId()).getCapacity());
+                updateLot(returnLot(update.getId()).getId(), update.getSize());
             } else if((update.getSize() > returnLot(update.getId()).getCapacity())){
                 System.out.println("car doesn't fit");
                 return "";
@@ -44,7 +44,7 @@ public class Main {
                 return "";
             }
 
-            System.out.println("Lot " + update.getId() + "updated");
+            System.out.println("Lot " + update.getId() + " updated");
             System.out.println(parkinglot);
             return "";
         }));
@@ -67,22 +67,4 @@ public class Main {
         }
         return null;
     }
-//    public static void updateLotOne(int id, int size) {
-//        for (ParkingLot parking : parkinglot) {
-//            if (parking.getId()== 1) {
-//                parking.setSize(parking.getSize() + size);
-//                break;
-//            }
-//        }
-//    }
-//
-//    public static void updateLotTwo(int id, int size) {
-//        for (ParkingLot parking : parkinglot) {
-//            if (parking.getId()== 2) {
-//                parking.setSize(parking.getSize() + size);
-//                break;
-//            }
-//        }
-//    }
-
 }
